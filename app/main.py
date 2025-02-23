@@ -28,6 +28,6 @@ def root():
 def root_test():
     c = 0
     for i in range(100):
-        c += int(str(i))
+        c += int(str(int(str(i))))
 
     return {"message": "This is just test endpoint for code review." + str(c)}
