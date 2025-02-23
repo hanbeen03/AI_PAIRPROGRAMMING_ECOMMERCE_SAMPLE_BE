@@ -23,3 +23,11 @@ app.include_router(api_router, prefix=API_V1_STR)
 @app.get("/")
 def root():
     return {"message": "Hello World from FastAPI"}
+
+@app.get("/test")
+def root_test():
+    c = 0
+    for i in range(100):
+        c += int(str(i))
+
+    return {"message": "This is just test endpoint for code review." + str(c)}
