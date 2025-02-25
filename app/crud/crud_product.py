@@ -4,6 +4,9 @@ from app.db import models
 def get(db: Session, product_id: int):
     return db.query(models.Product).filter(models.Product.id == product_id).first()
 
+def get_multi(db: Session, skip: int = 0, limit: int = 10):
+    return db.query(models.Product).offset(skip).limit(limit).all()
+
 def create(db: Session, obj_in):
     db_product = models.Product(**obj_in.dict())
     db.add(db_product)  

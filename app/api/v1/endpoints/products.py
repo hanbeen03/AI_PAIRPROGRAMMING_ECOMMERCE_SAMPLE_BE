@@ -18,6 +18,19 @@ def create_product(
     product = crud.crud_product.create(db=db, obj_in=product_in)
     return product
 
+@router.get("/")
+def read_product_list(
+    *,
+    page: int = 0,
+    limit: int = 10,
+    db=Depends(deps.get_db)
+):
+    """
+    Product 리스트 조회
+    """
+    products = crud.crud_product.get_multi(db, skip=page, limit=limit)
+    return products
+
 @router.get("/{product_id}", response_model=schemas.Product)
 def read_product(
     *,
